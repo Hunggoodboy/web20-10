@@ -310,3 +310,48 @@ canvas {
     transform: rotate(360deg);
   }
 }
+/* --- CSS CHO RESPONSIVE --- */
+/* Áp dụng cho màn hình có chiều rộng tối đa 1024px (máy tính bảng và điện thoại) */
+@media (max-width: 1024px) {
+  body {
+    /* Đưa sách ra giữa */
+    padding-left: 0;
+    justify-content: center;
+  }
+
+  .book-container {
+    /* Căn giữa và cho phép chiếm gần hết chiều rộng */
+    width: 90%;
+    max-width: 500px;
+    /* THAY ĐỔI QUAN TRỌNG: Thêm margin: 0 auto để buộc căn giữa block */
+    margin: 0 auto;
+  }
+
+  .book {
+    width: 100%; /* Sách chiếm hết chiều rộng container */
+    height: 70vh; /* Có thể tăng chiều cao một chút trên mobile */
+  }
+
+  .cover {
+    /* Tăng cỡ chữ tương đối trên màn hình nhỏ */
+    font-size: 6vw;
+  }
+
+  /* Di chuyển mũi tên vào trong, nằm đè lên sách */
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2000; /* Đảm bảo nút nổi lên trên cùng */
+  }
+
+  .arrow-left {
+    left: 10px; /* Đặt sát cạnh trái */
+    margin-right: 0;
+  }
+
+  .arrow-right {
+    right: 10px; /* Đặt sát cạnh phải */
+    margin-left: 0;
+  }
+}
