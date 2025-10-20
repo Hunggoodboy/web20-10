@@ -42,7 +42,7 @@
       <div class="content">
         <div class="music-control">
           <audio controls autoplay loop class="music">
-            <source src="./assets/musics/V1.wav" type="audio/wav" />
+            <source src="./assets/musics/I_DO.mp3" type="audio/mpeg" />
           </audio>
         </div>
         <div class="answer-question">
@@ -50,6 +50,19 @@
           <button class="btn btn--no"></button>
         </div>
       </div>
+        <button id="play-btn">💖 Play nhạc</button>
+<audio id="bg-music" loop>
+  <source src="./assets/musics/I_DO.mp3" type="audio/mpeg" />
+</audio>
+
+<script>
+  const btn = document.getElementById('play-btn');
+  const music = document.getElementById('bg-music');
+  btn.addEventListener('click', () => {
+    music.play();
+    btn.style.display = 'none'; // Ẩn nút sau khi phát
+  });
+</script>
       <!-- <footer class="footer">
             <span class="footer-lisence">© 2021, Designed by
                 <a href="https://fb.com/100055545081553" class="footer-link">AndyNgoJs</a>
@@ -86,6 +99,19 @@
     <script src="./assets/js/RequestAnimationFrame.js"></script>
     <script src="./assets/js/heartParticle.js"></script>
     <script src="./assets/js/main.js"></script>
+    <audio id="bg-music" loop>
+  <source src="./assets/musics/I_DO.mp3" type="audio/mpeg" />
+</audio>
 
+<script>
+  const music = document.getElementById('bg-music');
+
+  // Khi người dùng click vào bất kỳ đâu lần đầu -> phát nhạc
+  document.body.addEventListener('click', () => {
+    music.play().catch(err => {
+      console.log('Trình duyệt chưa cho phát nhạc:', err);
+    });
+  }, { once: true }); // chỉ chạy 1 lần duy nhất
+</script>
   </body>
 </html>

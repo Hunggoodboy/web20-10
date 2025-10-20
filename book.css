@@ -16,7 +16,7 @@
   cursor: pointer;
   border-radius: 50%;
   user-select: none;
-  z-index: 1000; /* đảm bảo nổi trên sách */
+
 }
 
 .arrow-left { left: 2%; }
@@ -55,4 +55,15 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.back {
+  transform: rotateY(180deg);
 }

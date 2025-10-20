@@ -1,26 +1,41 @@
-// Mảng ảnh các trang (sau bìa)
 const images = [
-  'images/photo1.jpg',
-  'images/photo2.jpg',
-  'images/photo3.jpg'
+  'assets/image/IMG_2.jpeg',
+  'assets/image/Pic1.jpg',
+  'assets/image/right2.jpg',
+  // ... các ảnh mặt trước
+];
+
+const backImages = [
+  'assets/image/IMG_BACK_2.jpeg',
+  'assets/image/PicBack1.jpg',
+  'assets/image/IMG_BACK_3142.jpg',
+  // ... các ảnh mặt sau tương ứng
 ];
 
 const book = document.getElementById('book');
 let currentPage = 0;
 
-// Tạo các trang
 images.forEach((src, i) => {
   const page = document.createElement('div');
   page.classList.add('page');
-page.style.width = '100%';
-page.style.height = '100%';  // bắt buộc
-page.style.transform = 'rotateY(0deg)';
-page.dataset.index = i + 1;
+  page.dataset.index = i + 1;
 
-  const img = document.createElement('img');
-  img.src = src;
-  page.appendChild(img);
+  // Mặt trước
+  const front = document.createElement('div');
+  front.classList.add('front');
+  const imgFront = document.createElement('img');
+  imgFront.src = src;
+  front.appendChild(imgFront);
 
+  // Mặt sau
+  const back = document.createElement('div');
+  back.classList.add('back');
+  const imgBack = document.createElement('img');
+  imgBack.src = backImages[i];
+  back.appendChild(imgBack);
+
+  page.appendChild(front);
+  page.appendChild(back);
   book.appendChild(page);
 });
 
@@ -39,15 +54,13 @@ function updatePages() {
   });
 }
 
-// Nút phải
 document.querySelector('.arrow-right').addEventListener('click', () => {
-  if (currentPage < pages.length - 1) {
+  if (currentPage < pages.length) {
     currentPage++;
     updatePages();
   }
 });
 
-// Nút trái
 document.querySelector('.arrow-left').addEventListener('click', () => {
   if (currentPage > 0) {
     currentPage--;

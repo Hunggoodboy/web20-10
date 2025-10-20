@@ -3,62 +3,75 @@
 <head>
 <meta charset="UTF-8">
 <title>Cuốn sách kỷ niệm</title>
-<link rel="stylesheet" href="book.css">
 <style>
+body {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  background: #f2e6d9;
+  font-family: Arial, sans-serif;
+  perspective: 2000px;
+  padding-left: 50px;
+  box-sizing: border-box;
+}
 
-  body {
-    display: flex;
-    justify-content: flex-start; /* không căn giữa, dễ đẩy sang phải */
-    align-items: center;
-    height: 100vh;
-    background: #f2e6d9;
-    font-family: Arial, sans-serif;
-    perspective: 2000px;
-    padding-left: 50px; /* đẩy sách sang phải 50px */
-    box-sizing: border-box;
-  }
-
-  .book-container {
+.book-container {
   position: relative;
   display: flex;
   align-items: center;
-  margin-left: auto; /* đẩy container sang phải */
-  margin-right: 200px; /* khoảng cách từ cạnh phải màn hình */
+  margin-left: auto;
+  margin-right: 200px;
 }
 
- .book {
+.book {
   position: relative;
-  width: 80vw;          /* chiều rộng co theo màn hình */
-  max-width: 600px;     /* không vượt quá 600px */
-  height: 60vh;         /* chiều cao theo viewport height */
-  max-height: 600px;    /* không vượt quá 600px */
+  width: 80vw;
+  max-width: 600px;
+  height: 60vh;
+  max-height: 600px;
   transform-style: preserve-3d;
 }
 
-.page, .cover {
-  width: 100%;
-  height: 100%;          /* luôn bằng .book */
+.page {
   position: absolute;
+  width: 100%;
+  height: 100%;
   transform-style: preserve-3d;
   transform-origin: left;
   transition: transform 1s;
+}
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.front img, .back img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   border: 2px solid #c2a77a;
   border-radius: 10px;
-  overflow: hidden;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  background-color: #fff;
 }
 
 .cover {
   background-image: url('assets/image/IMG_8026.JPG');
-  background-size: cover;
+  background-size: cover;   /* ảnh vừa khung, giữ tỉ lệ */
+  background-repeat: no-repeat;
   background-position: center;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding-top: 70%;           /* đẩy chữ xuống theo % */
+  align-items: center;
   color: white;
-  font-size: 2vw;             /* font co theo chiều rộng màn hình */
+  font-size: 2vw;
   font-weight: bold;
   text-align: center;
   font-family: 'Cursive', 'Segoe Script', 'Dancing Script', sans-serif;
@@ -66,80 +79,101 @@
 }
 
 
-  .page img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
 
-  /* Nút mũi tên */
-  .arrow {
-    font-size: 40px;
-    background-color: rgba(255,255,255,0.7);
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 50%;
-    user-select: none;
-    z-index: 1000;
-  }
 
-  .arrow-left { margin-right: 10px; }
-  .arrow-right { margin-left: 10px; }
+.arrow {
+  font-size: 40px;
+  background-color: rgba(255,255,255,0.7);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  user-select: none;
+  z-index: 1000;
+}
 
-  .arrow:hover { background-color: rgba(255,255,255,1); }
+.arrow-left { margin-right: 10px; }
+.arrow-right { margin-left: 10px; }
+
+.arrow:hover { background-color: rgba(255,255,255,1); }
 </style>
 </head>
 <body>
 
 <div class="book-container">
-  <!-- Nút trái -->
   <button class="arrow arrow-left">&#8592;</button>
 
-  <!-- Cuốn sách -->
   <div class="book" id="book">
-        <div class="page cover" data-index="0">Kỷ niệm của chúng mình</div>
+    <div class="page cover" data-index="0"></div>
   </div>
 
-  <!-- Nút phải -->
   <button class="arrow arrow-right">&#8594;</button>
 </div>
 
 <audio autoplay loop>
-  <source src="./assets/musics/V1.wav" type="audio/wav" />
+  <source src="./assets/musics/I_DO.mp3" type="audio/mpeg" />
 </audio>
 
 <script>
+// Mảng ảnh mặt trước
 const images = [
-    'assets/image/IMG_2.jpeg',
-    'assets/image/IMG_2.jpeg',
+  'assets/image/IMG_2.jpeg',
   'assets/image/Pic1.jpg',
-  'assets/image/IMG_3142.jpg',
-  'assets/image/IMG_3147.JPG',
-    'assets/image/IMG_6911 2.jpg',
-    'assets/image/IMG_6970.JPG',
-    'assets/image/IMG_7080.jpeg',
-    'assets/image/IMG_7450.jpg',
-    'assets/image/IMG_7451.jpg',
-    'assets/image/PicKid.jpg',
-    'assets/image/IMG_6281.PNG'
+  'assets/image/right2.jpg',
+    'assets/image/Right6.jpeg',
+    'assets/image/RIGHT7.JPG',
+    'assets/image/Right8.jpeg',
+    'assets/image/IMG_7637.jpg',
+    'assets/image/IMG_7867.jpeg',
+    'assets/image/IMG_7621.jpg',
+    'assets/image/IMG_3147.JPG',
+  'assets/image/IMG_6911 2.jpg',
+  'assets/image/IMG_6970.JPG',
+  'assets/image/IMG_7080.jpeg'
 
+];
+
+// Mảng ảnh mặt sau (mỗi trang khác ảnh mặt trước)
+const backImages = [
+  'assets/image/Left1.jpg',
+  'assets/image/Left2.jpg',
+      'assets/image/Left2_3.jpg',
+      'assets/image/Left2_4.jpg',
+    'assets/image/Left2_5.png',
+    'assets/image/Left.png',
+        'assets/image/Left2_6.png',
+    'assets/image/Leftt.png',
+  'assets/image/Left3.jpg',
+  'assets/image/Left4.jpg',
+  'assets/image/Left5.jpg',
+  'assets/image/left6.png'
 ];
 
 const book = document.getElementById('book');
 let currentPage = 0;
 
-// Tạo các trang
+// Tạo các trang với front/back
 images.forEach((src, i) => {
   const page = document.createElement('div');
   page.classList.add('page');
-  page.style.transform = `rotateY(0deg) translateZ(0px)`;
   page.dataset.index = i + 1;
 
-  const img = document.createElement('img');
-  img.src = src;
-  page.appendChild(img);
+  // Mặt trước
+  const front = document.createElement('div');
+  front.classList.add('front');
+  const imgFront = document.createElement('img');
+  imgFront.src = src;
+  front.appendChild(imgFront);
 
+  // Mặt sau
+  const back = document.createElement('div');
+  back.classList.add('back');
+  const imgBack = document.createElement('img');
+  imgBack.src = backImages[i];
+  back.appendChild(imgBack);
+
+  page.appendChild(front);
+  page.appendChild(back);
   book.appendChild(page);
 });
 
@@ -159,7 +193,7 @@ function updatePages() {
 }
 
 document.querySelector('.arrow-right').addEventListener('click', () => {
-  if (currentPage < pages.length - 1) {
+  if (currentPage < pages.length) {
     currentPage++;
     updatePages();
   }
