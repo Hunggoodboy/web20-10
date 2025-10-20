@@ -1,0 +1,58 @@
+.book-wrapper {
+  position: relative;
+  width: 600px;
+  height: 400px;
+}
+
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+  background-color: rgba(255,255,255,0.7);
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 50%;
+  user-select: none;
+  z-index: 1000; /* đảm bảo nổi trên sách */
+}
+
+.arrow-left { left: 2%; }
+.arrow-right { right: 2%; }
+
+.arrow:hover { background-color: rgba(255,255,255,1); }
+
+.book-wrapper {
+  width: 90%;          /* co theo màn hình */
+  max-width: 700px;    /* giới hạn tối đa */
+  height: 60vh;        /* chiều cao theo màn hình */
+  max-height: 400px;   /* giới hạn tối đa */
+  margin: auto;        /* căn giữa */
+}
+
+
+.page img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* đảm bảo ảnh phủ đầy trang */
+  display: block;    /* tránh khoảng trống do inline */
+}
+
+.book {
+  position: relative;
+  width: 600px;    /* chiều rộng sách */
+  height: 600px;   /* tăng chiều cao để sách dài hơn */
+  transform-style: preserve-3d;
+}
+.page {
+  width: 100%;
+  height: 100%;
+}
+
+.book, .page {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
